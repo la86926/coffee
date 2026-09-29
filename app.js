@@ -2,6 +2,28 @@
   "use strict";
   const root = document.documentElement;
 
+  // Portadas extraídas de los MP4 originales. Se guardan en fragmentos de texto
+  // para mantener GitHub Pages ligero y se reconstruyen una sola vez en el navegador.
+  (async function loadLocalPosters(){
+    try{
+      const parts = await Promise.all([0,1,2,3,4].map(i =>
+        fetch("./assets/media-"+i+".b64", {cache:"force-cache"}).then(r => {
+          if(!r.ok) throw new Error("poster part");
+          return r.text();
+        })
+      ));
+      const raw = atob(parts.join("").replace(/\s+/g,""));
+      const bytes = new Uint8Array(raw.length);
+      for(let i=0;i<raw.length;i++) bytes[i]=raw.charCodeAt(i);
+      const posterUrl = URL.createObjectURL(new Blob([bytes],{type:"image/webp"}));
+      root.style.setProperty("--poster-atlas", 'url("'+posterUrl+'")');
+      document.body.classList.add("has-local-posters");
+      window.addEventListener("pagehide",()=>URL.revokeObjectURL(posterUrl),{once:true});
+    }catch(_){
+      // Las miniaturas de YouTube quedan como respaldo si el atlas no carga.
+    }
+  })();
+
   const themeButton = document.getElementById("themeButton");
   const savedTheme = localStorage.getItem("coffee-theme");
   if (savedTheme === "light" || savedTheme === "dark") root.dataset.theme = savedTheme;
