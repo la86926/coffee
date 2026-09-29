@@ -1,11 +1,3 @@
-Coloca aquí los diez archivos MP4 con estos nombres:
-video-01.mp4
-video-02.mp4
-video-03.mp4
-video-04.mp4
-video-05.mp4
-video-06.mp4
-video-07.mp4
-video-08.mp4
-video-09.mp4
-video-10.mp4
+Los MP4 originales se usan como material fuente y no se publican dentro del repositorio.
+
+La web usa los 10 videos publicados en YouTube y el video completo. Los reproductores se crean únicamente cuando el visitante pulsa reproducir, para reducir peso inicial y evitar cargar 11 iframes al abrir la página.
