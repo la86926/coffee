@@ -1,32 +1,20 @@
 # coffee
 
-Web estática para explicar mi método personal de café con prensa francesa.
+Web personal sobre mi método para preparar café con prensa francesa.
 
-## Publicación
-El sitio está preparado para funcionar desde la raíz del repositorio en GitHub Pages con rutas relativas.
+## Sitio
+GitHub Pages: https://la86926.github.io/coffee/
 
-## Fotografías
-Colocar en `assets/`:
-- `utensilios.webp`: fotografía general con los cinco objetos.
-- `objeto-01.webp`: cacerola pequeña.
-- `objeto-02.webp`: jarro rojo.
-- `objeto-03.webp`: prensa francesa.
-- `objeto-04.webp`: tetera.
-- `objeto-05.webp`: cacerola grande.
+## Implementación
+- HTML, CSS y JavaScript sin frameworks.
+- Diseño responsive tipo app para móvil, tablet y escritorio.
+- Fotografía real de los cinco utensilios en el orden de trabajo.
+- Diez pasos con lectura rápida y explicación completa.
+- Dos cronómetros auxiliares: 2 minutos y 4/5 minutos.
+- Los videos se reproducen desde YouTube mediante `youtube-nocookie.com`; el iframe se crea solo cuando el usuario pulsa reproducir.
+- Las miniaturas se cargan de forma diferida.
+- Tema sistema/claro/oscuro.
+- Manifest ligero para experiencia instalable.
+- Sin service worker para evitar caché obsoleta innecesaria en una guía estática.
 
-Mientras esos archivos no existan, la web muestra representaciones temporales.
-
-## Videos
-Colocar en `videos/`:
-- `video-01.mp4`
-- `video-02.mp4`
-- `video-03.mp4`
-- `video-04.mp4`
-- `video-05.mp4`
-- `video-06.mp4`
-- `video-07.mp4`
-- `video-08.mp4`
-- `video-09.mp4`
-- `video-10.mp4`
-
-Los videos no se cargan hasta que el visitante pulsa el botón correspondiente.
+Los MP4 originales se conservaron como material fuente y no se alojan en GitHub Pages para evitar añadir aproximadamente 182 MB al sitio.
