@@ -195,7 +195,7 @@ details{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}summar
 .crop-1{background-image:url("./assets/tool-01.webp");background-position:center}
 .crop-2{background-image:url("./assets/tool-02.webp");background-position:center}
 .crop-3{
-  background-image:url("./assets/tool-03.webp?v=5"),url("./assets/utensilios.webp");
+  background-image:url("./assets/tool-03.webp"),url("./assets/utensilios.webp");
   background-position:center,50% 50%;
   background-size:contain,350% auto;
   background-repeat:no-repeat,no-repeat;
