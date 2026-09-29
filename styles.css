@@ -81,16 +81,16 @@ details{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}summar
   background-repeat:no-repeat;
 }
 .has-local-posters .step-media>img{opacity:0}
-.has-local-posters .step-card[data-step="1"] .step-media{background-position:33.3333% 60%}
-.has-local-posters .step-card[data-step="2"] .step-media{background-position:66.6667% 60%}
-.has-local-posters .step-card[data-step="3"] .step-media{background-position:100% 60%}
-.has-local-posters .step-card[data-step="4"] .step-media{background-position:0 80%}
-.has-local-posters .step-card[data-step="5"] .step-media{background-position:33.3333% 80%}
-.has-local-posters .step-card[data-step="6"] .step-media{background-position:66.6667% 80%}
-.has-local-posters .step-card[data-step="7"] .step-media{background-position:100% 80%}
-.has-local-posters .step-card[data-step="8"] .step-media{background-position:0 100%}
-.has-local-posters .step-card[data-step="9"] .step-media{background-position:33.3333% 100%}
-.has-local-posters .step-card[data-step="10"] .step-media{background-position:66.6667% 100%}
+.has-local-posters .step-card[data-step="1"] .step-media{background-position:33.3333% 55.814%}
+.has-local-posters .step-card[data-step="2"] .step-media{background-position:66.6667% 55.814%}
+.has-local-posters .step-card[data-step="3"] .step-media{background-position:100% 55.814%}
+.has-local-posters .step-card[data-step="4"] .step-media{background-position:0 74.419%}
+.has-local-posters .step-card[data-step="5"] .step-media{background-position:33.3333% 74.419%}
+.has-local-posters .step-card[data-step="6"] .step-media{background-position:66.6667% 74.419%}
+.has-local-posters .step-card[data-step="7"] .step-media{background-position:100% 74.419%}
+.has-local-posters .step-card[data-step="8"] .step-media{background-position:0 93.023%}
+.has-local-posters .step-card[data-step="9"] .step-media{background-position:33.3333% 93.023%}
+.has-local-posters .step-card[data-step="10"] .step-media{background-position:66.6667% 93.023%}
 .has-local-posters .full-media{
   background-image:var(--poster-atlas);
   background-size:400% auto;
@@ -98,3 +98,17 @@ details{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}summar
   background-position:100% 100%;
 }
 .has-local-posters .full-media>img{opacity:0}
+
+@media(max-width:680px){
+  /* Ajuste móvil del atlas: las portadas pasan de 16:10 a 4:3. */
+  .has-local-posters .step-card[data-step="1"] .step-media{background-position:33.3333% 57.143%}
+  .has-local-posters .step-card[data-step="2"] .step-media{background-position:66.6667% 57.143%}
+  .has-local-posters .step-card[data-step="3"] .step-media{background-position:100% 57.143%}
+  .has-local-posters .step-card[data-step="4"] .step-media{background-position:0 76.19%}
+  .has-local-posters .step-card[data-step="5"] .step-media{background-position:33.3333% 76.19%}
+  .has-local-posters .step-card[data-step="6"] .step-media{background-position:66.6667% 76.19%}
+  .has-local-posters .step-card[data-step="7"] .step-media{background-position:100% 76.19%}
+  .has-local-posters .step-card[data-step="8"] .step-media{background-position:0 95.238%}
+  .has-local-posters .step-card[data-step="9"] .step-media{background-position:33.3333% 95.238%}
+  .has-local-posters .step-card[data-step="10"] .step-media{background-position:66.6667% 95.238%}
+}
