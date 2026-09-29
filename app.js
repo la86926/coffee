@@ -1,75 +1,184 @@
-(function(){
-  const root=document.documentElement;
-  const themeBtn=document.getElementById("themeToggle");
-  const saved=localStorage.getItem("coffee-theme");
-  if(saved) root.dataset.theme=saved;
-  themeBtn.addEventListener("click",function(){
-    const dark=root.dataset.theme==="dark"||(!root.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);
-    root.dataset.theme=dark?"light":"dark";
-    localStorage.setItem("coffee-theme",root.dataset.theme);
-  });
+(() => {
+  "use strict";
+  const root = document.documentElement;
 
-  const hero=document.getElementById("heroPhoto"),fallback=document.getElementById("heroFallback");
-  hero.addEventListener("error",function(){hero.style.display="none";fallback.style.display="grid";});
-  document.querySelectorAll(".object-card img").forEach(function(img){
-    img.addEventListener("error",function(){img.style.display="none";img.nextElementSibling.style.display="grid";});
-  });
+  const themeButton = document.getElementById("themeButton");
+  const savedTheme = localStorage.getItem("coffee-theme");
+  if (savedTheme === "light" || savedTheme === "dark") root.dataset.theme = savedTheme;
 
-  const steps=[].slice.call(document.querySelectorAll(".step"));
-  const dots=[].slice.call(document.querySelectorAll(".step-dot"));
-  const bar=document.getElementById("progressBar"),txt=document.getElementById("progressText");
-  let current=0;
-  function showStep(i,scroll){
-    current=Math.max(0,Math.min(steps.length-1,i));
-    steps.forEach(function(s,n){s.classList.toggle("active",n===current);});
-    dots.forEach(function(d,n){d.classList.toggle("active",n===current);});
-    bar.style.width=((current+1)/steps.length*100)+"%";
-    txt.textContent="Paso "+(current+1)+" de "+steps.length;
-    document.getElementById("prevStep").disabled=current===0;
-    document.getElementById("nextStep").textContent=current===steps.length-1?"Volver al paso 1":"Siguiente →";
-    if(scroll&&matchMedia("(max-width: 680px)").matches) document.querySelector(".sticky-title").scrollIntoView({behavior:"smooth",block:"start"});
+  function themeMode() { return root.dataset.theme || "system"; }
+  function paintTheme() {
+    const mode = themeMode();
+    const names = {system:"sistema", light:"claro", dark:"oscuro"};
+    const icons = {system:"◐", light:"☀", dark:"☾"};
+    themeButton.textContent = icons[mode];
+    themeButton.setAttribute("aria-label", "Tema: " + names[mode]);
+    themeButton.title = "Tema: " + names[mode];
   }
-  dots.forEach(function(d){d.addEventListener("click",function(){showStep(Number(d.dataset.go),true);});});
-  document.getElementById("prevStep").addEventListener("click",function(){showStep(current-1,true);});
-  document.getElementById("nextStep").addEventListener("click",function(){showStep(current===steps.length-1?0:current+1,true);});
-  let touchX=null;
-  document.getElementById("stepsTrack").addEventListener("touchstart",function(e){touchX=e.changedTouches[0].clientX;},{passive:true});
-  document.getElementById("stepsTrack").addEventListener("touchend",function(e){
-    if(touchX===null)return; const dx=e.changedTouches[0].clientX-touchX; touchX=null;
-    if(Math.abs(dx)>55) showStep(current+(dx<0?1:-1),false);
-  },{passive:true});
-  showStep(0,false);
+  themeButton.addEventListener("click", () => {
+    const mode = themeMode();
+    const next = mode === "system" ? "light" : mode === "light" ? "dark" : "system";
+    if (next === "system") {
+      root.removeAttribute("data-theme");
+      localStorage.removeItem("coffee-theme");
+    } else {
+      root.dataset.theme = next;
+      localStorage.setItem("coffee-theme", next);
+    }
+    paintTheme();
+  });
+  paintTheme();
 
-  document.querySelectorAll(".timer-card").forEach(function(card){
-    let initial=Number(card.dataset.seconds),left=initial,timer=null;
-    const display=card.querySelector(".timer-display");
-    function draw(){const m=Math.floor(left/60),s=left%60;display.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
-    function pause(){if(timer){clearInterval(timer);timer=null;}}
-    card.addEventListener("click",function(e){
-      const action=e.target.dataset.action;
-      if(action==="start"&&!timer&&left>0) timer=setInterval(function(){left--;draw();if(left<=0){pause();card.classList.add("done");}},1000);
-      if(action==="pause") pause();
-      if(action==="reset"){pause();left=initial;card.classList.remove("done");draw();}
-      if(e.target.dataset.duration){
-        pause();initial=Number(e.target.dataset.duration);left=initial;card.dataset.seconds=initial;
-        card.querySelectorAll("[data-duration]").forEach(function(b){b.classList.toggle("selected",b===e.target);});draw();
+  document.querySelectorAll(".tool-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const opening = !card.classList.contains("open");
+      document.querySelectorAll(".tool-card.open").forEach(item => item.classList.remove("open"));
+      if (opening) card.classList.add("open");
+    });
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        card.click();
       }
     });
+  });
+
+  const stepCards = Array.from(document.querySelectorAll(".step-card"));
+  const progressLabel = document.getElementById("stepProgressLabel");
+  const progressBar = document.getElementById("stepProgressBar");
+  function setProgress(n) {
+    n = Math.max(1, Math.min(10, Number(n) || 1));
+    progressLabel.textContent = "Paso " + n + " de 10";
+    progressBar.style.width = (n * 10) + "%";
+  }
+  if ("IntersectionObserver" in window) {
+    const ratios = new Map();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) ratios.set(entry.target, entry.intersectionRatio);
+        else ratios.delete(entry.target);
+      });
+      if (!ratios.size) return;
+      const best = Array.from(ratios.entries()).sort((a,b) => b[1] - a[1])[0][0];
+      setProgress(best.dataset.step);
+    }, {threshold:[0.2,0.4,0.65], rootMargin:"-18% 0px -45% 0px"});
+    stepCards.forEach(card => observer.observe(card));
+  }
+
+  document.querySelectorAll("[data-timer]").forEach(timer => {
+    let initial = Number(timer.dataset.duration);
+    let remaining = initial;
+    let interval = null;
+    let deadline = null;
+    const display = timer.querySelector(".timer-display");
+
+    function draw() {
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      display.textContent = String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+      if (interval) document.title = display.textContent + " · Mi café";
+    }
+    function stop() {
+      if (interval) clearInterval(interval);
+      interval = null;
+      deadline = null;
+      document.title = "Mi café · Prensa francesa";
+    }
+    function tick() {
+      if (!deadline) return;
+      remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      draw();
+      if (remaining <= 0) {
+        stop();
+        timer.classList.add("done");
+        try { if ("vibrate" in navigator) navigator.vibrate([160,90,160]); } catch (_) {}
+      }
+    }
+
+    timer.addEventListener("click", event => {
+      const action = event.target.dataset.action;
+      const duration = event.target.dataset.duration;
+
+      if (duration) {
+        stop();
+        initial = Number(duration);
+        remaining = initial;
+        timer.dataset.duration = String(initial);
+        timer.classList.remove("done");
+        timer.querySelectorAll("[data-duration]").forEach(button => button.classList.toggle("selected", button === event.target));
+        draw();
+        return;
+      }
+      if (action === "start" && !interval && remaining > 0) {
+        timer.classList.remove("done");
+        deadline = Date.now() + remaining * 1000;
+        interval = setInterval(tick, 250);
+        tick();
+      }
+      if (action === "pause") {
+        if (deadline) remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+        stop();
+        draw();
+      }
+      if (action === "reset") {
+        stop();
+        remaining = initial;
+        timer.classList.remove("done");
+        draw();
+      }
+    });
+    document.addEventListener("visibilitychange", () => { if (!document.hidden && interval) tick(); });
     draw();
   });
 
-  const titles=["Las dos aguas","Calentar y enjuagar","Calentar 2 minutos","Añadir y nivelar","Añadir el agua limpia","Mezclar","Tapa y émbolo","Esperar 4–5 minutos","Bajar el émbolo","Servir inmediatamente"];
-  const grid=document.getElementById("videoGrid");
-  titles.forEach(function(title,i){
-    const n=String(i+1).padStart(2,"0"),card=document.createElement("article");card.className="video-card";
-    card.innerHTML='<div class="video-placeholder"><button class="load-video" type="button" data-src="./videos/video-'+n+'.mp4">▶ Cargar video '+n+'</button></div><h3>Paso '+(i+1)+' · '+title+'</h3><p>Archivo esperado: video-'+n+'.mp4</p>';
-    grid.appendChild(card);
+  const dialog = document.getElementById("videoDialog");
+  const frame = document.getElementById("videoFrame");
+  const dialogTitle = document.getElementById("videoDialogTitle");
+  const closeVideo = document.getElementById("closeVideo");
+
+  function openVideo(id, title) {
+    if (!id) return;
+    dialogTitle.textContent = title || "Video";
+    frame.innerHTML = "";
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?autoplay=1&playsinline=1&rel=0";
+    iframe.title = title || "Video";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.appendChild(iframe);
+    document.body.classList.add("video-open");
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open","");
+  }
+  function closeDialog() {
+    frame.innerHTML = "";
+    document.body.classList.remove("video-open");
+    if (dialog.open && typeof dialog.close === "function") dialog.close();
+    else dialog.removeAttribute("open");
+  }
+  document.addEventListener("click", event => {
+    const trigger = event.target.closest("[data-video]");
+    if (trigger) openVideo(trigger.dataset.video, trigger.dataset.title);
   });
-  grid.addEventListener("click",function(e){
-    if(!e.target.matches(".load-video"))return;
-    const wrap=e.target.parentElement,src=e.target.dataset.src;
-    const video=document.createElement("video");video.controls=true;video.playsInline=true;video.preload="metadata";video.setAttribute("aria-label","Video del "+e.target.textContent.replace("Cargar ",""));
-    video.addEventListener("error",function(){wrap.innerHTML='<div><strong>Video aún no disponible</strong><br><small>Coloca el archivo correspondiente en la carpeta videos.</small></div>';});
-    wrap.innerHTML="";wrap.appendChild(video);video.src=src;video.load();
+  closeVideo.addEventListener("click", closeDialog);
+  dialog.addEventListener("click", event => {
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeDialog();
   });
+  dialog.addEventListener("close", () => {
+    frame.innerHTML = "";
+    document.body.classList.remove("video-open");
+  });
+
+  document.addEventListener("gesturestart", event => event.preventDefault(), {passive:false});
+  let lastTouchEnd = 0;
+  document.addEventListener("touchend", event => {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) event.preventDefault();
+    lastTouchEnd = now;
+  }, {passive:false});
+  window.addEventListener("wheel", event => {
+    if (event.ctrlKey || event.metaKey) event.preventDefault();
+  }, {passive:false});
 })();
