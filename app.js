@@ -197,6 +197,35 @@
     document.body.classList.remove("video-open");
   });
 
+
+  // Figma refinement: lightweight motion
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    const motionItems = document.querySelectorAll(".water-card,.tool-card,.step-card,.full-card,.alternatives-grid article");
+    motionItems.forEach(item => item.classList.add("motion-item"));
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in-view");
+        revealObserver.unobserve(entry.target);
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -7% 0px"});
+    motionItems.forEach(item => revealObserver.observe(item));
+  }
+
+  const appbar = document.querySelector(".appbar");
+  if (appbar) {
+    let scrollFrame = 0;
+    const paintBar = () => {
+      scrollFrame = 0;
+      appbar.classList.toggle("is-scrolled", window.scrollY > 16);
+    };
+    addEventListener("scroll", () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(paintBar);
+    }, {passive:true});
+    paintBar();
+  }
+
   document.addEventListener("gesturestart", event => event.preventDefault(), {passive:false});
   let lastTouchEnd = 0;
   document.addEventListener("touchend", event => {
