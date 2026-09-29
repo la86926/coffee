@@ -112,3 +112,5 @@ details{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}summar
   .has-local-posters .step-card[data-step="9"] .step-media{background-position:33.3333% 95.238%}
   .has-local-posters .step-card[data-step="10"] .step-media{background-position:66.6667% 95.238%}
 }
+
+.alternatives-source{margin:18px 2px 0;color:var(--muted);font-size:12px}.alternatives-source a{text-decoration:underline;text-underline-offset:3px}.alternatives-source a:hover{color:var(--text)}
