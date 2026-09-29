@@ -173,3 +173,11 @@ details{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}summar
 @media(prefers-reduced-motion:reduce){
   .motion-item{opacity:1!important;transform:none!important}
 }
+
+
+/* Lightweight navigation polish */
+.topnav a{position:relative}
+.topnav a::after{content:"";position:absolute;left:11px;right:11px;bottom:5px;height:2px;border-radius:99px;background:var(--coffee);transform:scaleX(0);transform-origin:center;transition:transform .2s ease}
+.topnav a.active{color:var(--text)}
+.topnav a.active::after{transform:scaleX(1)}
+#metodo,#elementos,#completo,#alternativas{content-visibility:auto;contain-intrinsic-size:1px 700px}
