@@ -1,262 +1,158 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f5f3ef">
-  <meta name="description" content="Mi método personal para preparar café con prensa francesa, explicado paso a paso.">
-  <title>Mi café · Prensa francesa</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#f5f1eb" media="(prefers-color-scheme:light)">
+<meta name="theme-color" content="#11100f" media="(prefers-color-scheme:dark)">
+<meta name="description" content="Mi método personal para preparar café con prensa francesa, explicado en 10 pasos.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Mi café · Prensa francesa</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="./assets/utensilios.webp" fetchpriority="high">
+<link rel="stylesheet" href="./styles.css">
+<script defer src="./app.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
-
-<header class="topbar" aria-label="Navegación principal">
-  <a class="brand" href="#inicio" aria-label="Ir al inicio">
-    <span class="brand-dot"></span><span>Mi café</span>
-  </a>
-  <nav>
-    <a href="#metodo">Mi método</a>
-    <a href="#elementos">Los 5 elementos</a>
-    <a href="#pasos">Paso a paso</a>
-    <a href="#videos">Videos</a>
-    <a href="#alternativas">Alternativas</a>
+<header class="appbar" aria-label="Navegación principal">
+  <a class="brand" href="#inicio" aria-label="Ir al inicio"><span class="brand-mark" aria-hidden="true">☕</span><span>Mi café</span></a>
+  <nav class="topnav" aria-label="Secciones">
+    <a href="#metodo">Mi método</a><a href="#elementos">5 elementos</a><a href="#pasos">10 pasos</a><a href="#completo">Completo</a><a href="#alternativas">Alternativas</a>
   </nav>
-  <button id="themeToggle" class="icon-button" type="button" aria-label="Cambiar tema">◐</button>
+  <button id="themeButton" class="theme-button" type="button" aria-label="Tema: sistema" title="Tema: sistema">◐</button>
 </header>
 
 <main id="contenido">
-  <section id="inicio" class="hero shell">
-    <div class="hero-copy reveal">
-      <span class="eyebrow">PRENSA FRANCESA · MI FORMA DE PREPARARLA</span>
-      <h1>Dos aguas.<br>Diez pasos.<br>Un café a mi manera.</h1>
-      <p>Este recorrido muestra exactamente cómo organizo mi cocina y cómo preparo mi café. Mi método es el contenido principal; las técnicas habituales aparecen al final, separadas como alternativas.</p>
-      <div class="hero-actions">
-        <a class="button primary" href="#pasos">Comenzar el recorrido</a>
-        <a class="button secondary" href="#elementos">Ver mis 5 elementos</a>
-      </div>
-    </div>
-    <div class="hero-visual reveal" aria-label="Zona de preparación">
-      <div class="orb orb-a"></div><div class="orb orb-b"></div>
-      <div class="photo-frame">
-        <img id="heroPhoto" src="./assets/utensilios.webp" alt="Mis cinco utensilios para preparar café, ordenados de izquierda a derecha" loading="eager">
-        <div id="heroFallback" class="photo-fallback">
-          <img src="./assets/utensilios-placeholder.svg" alt="" aria-hidden="true">
-          <span>Espacio preparado para la fotografía original</span>
-        </div>
-      </div>
-      <p class="microcopy">Orden de trabajo: cacerola pequeña → jarro rojo → prensa francesa → tetera → cacerola grande.</p>
-    </div>
-  </section>
+<section id="inicio" class="hero shell">
+  <div class="hero-copy reveal">
+    <p class="eyebrow">PRENSA FRANCESA · MI MÉTODO</p>
+    <h1>Mi café.<br>Mi manera.</h1>
+    <p class="hero-lead">Dos aguas, cinco utensilios y diez pasos. Esta web reproduce el procedimiento que sigo en casa.</p>
+    <div class="hero-badges" aria-label="Resumen"><span><b>2</b> aguas</span><span><b>5</b> elementos</span><span><b>10</b> pasos</span></div>
+    <div class="hero-actions"><a class="button primary" href="#pasos">Ver los 10 pasos</a><a class="button ghost" href="#elementos">Mis utensilios</a></div>
+  </div>
+  <div class="hero-visual reveal">
+    <div class="hero-glow glow-a" aria-hidden="true"></div><div class="hero-glow glow-b" aria-hidden="true"></div>
+    <figure class="hero-image"><img src="./assets/utensilios.webp" width="1200" height="600" fetchpriority="high" alt="Cacerola pequeña, jarro rojo, prensa francesa, tetera y cacerola grande, en ese orden"></figure>
+    <p class="order-caption">Pequeña → jarro rojo → prensa → tetera → grande</p>
+  </div>
+</section>
 
-  <section id="metodo" class="section shell intro-grid">
-    <div>
-      <span class="eyebrow">MI MÉTODO</span>
-      <h2>La idea central</h2>
-    </div>
-    <div class="lead-card glass">
-      <p>Trabajo con <strong>dos aguas distintas</strong>. La primera, del caño, solo sirve para calentar y enjuagar la prensa y sus piezas. La segunda es agua limpia comprada para beber y es la única que uso para preparar el café.</p>
-      <p class="note"><strong>Observación:</strong> el agua de calentamiento no se bebe y se desecha antes de añadir el café.</p>
-    </div>
-  </section>
+<section id="metodo" class="section shell">
+  <div class="section-heading"><div><p class="eyebrow">MI MÉTODO</p><h2>La idea que organiza todo</h2></div><p class="section-intro">Trabajo con dos aguas diferentes. Una prepara la prensa; la otra prepara el café.</p></div>
+  <div class="water-grid">
+    <article class="water-card tap-water"><span class="water-number">01</span><div><h3>Agua del caño</h3><p>Va en la cacerola pequeña. No se bebe. Solo la uso para calentar la prensa francesa y enjuagar sus piezas con agua muy caliente.</p></div><span class="water-tag">Fuego máximo al inicio</span></article>
+    <article class="water-card drink-water"><span class="water-number">02</span><div><h3>Agua limpia para beber</h3><p>Va en la cacerola grande. Es la única agua que uso para preparar el café y que luego paso a la tetera.</p></div><span class="water-tag">Fuego mínimo al inicio</span></article>
+  </div>
+</section>
 
-  <section id="elementos" class="section shell">
-    <div class="section-head">
-      <div><span class="eyebrow">ANTES DE EMPEZAR</span><h2>Los 5 elementos, siempre en este orden</h2></div>
-      <p>Toca un elemento o pasa el cursor para recordar su función.</p>
-    </div>
-    <div class="objects" id="objectsGrid">
-      <article class="object-card" tabindex="0">
-        <span class="object-index">01</span>
-        <img src="./assets/objeto-01.webp" data-fallback="🍲" alt="Cacerola pequeña" loading="lazy">
-        <div class="object-fallback" aria-hidden="true">🍲</div>
-        <h3>Cacerola pequeña</h3>
-        <p>Primera agua, del caño. No se bebe. Hierve para calentar y enjuagar la prensa, tapa, émbolo, filtro, placa cruz y resorte.</p>
-      </article>
-      <article class="object-card" tabindex="0">
-        <span class="object-index">02</span>
-        <img src="./assets/objeto-02.webp" data-fallback="☕" alt="Jarro o taza roja" loading="lazy">
-        <div class="object-fallback red" aria-hidden="true">☕</div>
-        <h3>Jarro rojo</h3>
-        <p>Recibe temporalmente la tapa y el conjunto del émbolo/filtros calientes, para no apoyarlos directamente sobre la mesa.</p>
-      </article>
-      <article class="object-card" tabindex="0">
-        <span class="object-index">03</span>
-        <img src="./assets/objeto-03.webp" data-fallback="♨" alt="Prensa francesa" loading="lazy">
-        <div class="object-fallback" aria-hidden="true">♨</div>
-        <h3>Prensa francesa</h3>
-        <p>Es el recipiente principal: aquí se calienta la jarra, se añade el café, se infusiona y se realiza el prensado.</p>
-      </article>
-      <article class="object-card" tabindex="0">
-        <span class="object-index">04</span>
-        <img src="./assets/objeto-04.webp" data-fallback="◒" alt="Tetera para verter el agua" loading="lazy">
-        <div class="object-fallback" aria-hidden="true">◒</div>
-        <h3>Tetera</h3>
-        <p>Recibe el agua limpia hirviendo y permite verterla sobre el café con movimientos circulares controlados.</p>
-      </article>
-      <article class="object-card" tabindex="0">
-        <span class="object-index">05</span>
-        <img src="./assets/objeto-05.webp" data-fallback="🍲" alt="Cacerola grande" loading="lazy">
-        <div class="object-fallback" aria-hidden="true">🍲</div>
-        <h3>Cacerola grande</h3>
-        <p>Segunda agua: limpia y comprada para beber. Se usa para preparar el café y, cuando queda vacía, también puede recibir el café terminado.</p>
-      </article>
-    </div>
-  </section>
+<section id="elementos" class="section shell">
+  <div class="section-heading"><div><p class="eyebrow">ANTES DE EMPEZAR</p><h2>Los 5 elementos</h2></div><p class="section-intro">Siempre los organizo así para tener todo a mano. Toca una tarjeta para recordar su función.</p></div>
+  <div class="tools-grid">
+    <article class="tool-card" tabindex="0"><span class="tool-index">01</span><div class="tool-photo crop-1" role="img" aria-label="Cacerola pequeña"></div><h3>Cacerola pequeña</h3><p class="tool-brief">Primera agua · del caño</p><div class="tool-detail"><p>Contiene el agua del caño. No se bebe: la uso para calentar la prensa francesa y enjuagar con agua muy caliente sus piezas.</p></div></article>
+    <article class="tool-card" tabindex="0"><span class="tool-index">02</span><div class="tool-photo crop-2" role="img" aria-label="Jarro rojo"></div><h3>Jarro rojo</h3><p class="tool-brief">Soporte temporal</p><div class="tool-detail"><p>Recibe temporalmente la tapa y el conjunto del émbolo/filtros cuando los retiro calientes, para no apoyarlos directamente sobre la mesa.</p></div></article>
+    <article class="tool-card" tabindex="0"><span class="tool-index">03</span><div class="tool-photo crop-3" role="img" aria-label="Prensa francesa"></div><h3>Prensa francesa</h3><p class="tool-brief">Recipiente principal</p><div class="tool-detail"><p>Aquí caliento la jarra, añado el café, vierto el agua, mezclo, infusiono y finalmente hago el prensado.</p></div></article>
+    <article class="tool-card" tabindex="0"><span class="tool-index">04</span><div class="tool-photo crop-4" role="img" aria-label="Tetera"></div><h3>Tetera</h3><p class="tool-brief">Vertido circular</p><div class="tool-detail"><p>Recibe el agua limpia previamente hervida y me permite verterla sobre el café mediante movimientos circulares.</p></div></article>
+    <article class="tool-card" tabindex="0"><span class="tool-index">05</span><div class="tool-photo crop-5" role="img" aria-label="Cacerola grande"></div><h3>Cacerola grande</h3><p class="tool-brief">Segunda agua · para beber</p><div class="tool-detail"><p>Contiene el agua limpia que compro para beber. Cuando queda vacía, también puedo utilizarla para recibir el café terminado.</p></div></article>
+  </div>
+</section>
 
-  <section id="pasos" class="section shell">
-    <div class="section-head sticky-title">
-      <div><span class="eyebrow">RECORRIDO GUIADO</span><h2>Mi preparación · 10 pasos</h2></div>
-      <div class="progress-wrap" aria-label="Progreso del recorrido"><span id="progressText">Paso 1 de 10</span><div class="progress"><i id="progressBar"></i></div></div>
-    </div>
+<section id="pasos" class="section shell">
+  <div class="section-heading steps-heading"><div><p class="eyebrow">DE UN VISTAZO O EN DETALLE</p><h2>Mi preparación · 10 pasos</h2></div><div class="step-progress" aria-live="polite"><span id="stepProgressLabel">Paso 1 de 10</span><span class="progress-track" aria-hidden="true"><i id="stepProgressBar"></i></span></div></div>
+  <div class="steps-grid">
 
-    <div class="steps-layout">
-      <aside class="step-nav" aria-label="Seleccionar paso">
-        <button class="step-dot active" data-go="0">1</button><button class="step-dot" data-go="1">2</button>
-        <button class="step-dot" data-go="2">3</button><button class="step-dot" data-go="3">4</button>
-        <button class="step-dot" data-go="4">5</button><button class="step-dot" data-go="5">6</button>
-        <button class="step-dot" data-go="6">7</button><button class="step-dot" data-go="7">8</button>
-        <button class="step-dot" data-go="8">9</button><button class="step-dot" data-go="9">10</button>
-      </aside>
+  <article class="step-card" data-step="1">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/jgDoYD0jHf4/hqdefault.jpg" alt="Dos cacerolas para las dos aguas"><button class="play-button" type="button" data-video="jgDoYD0jHf4" data-title="Paso 1 · Las dos aguas" aria-label="Reproducir video del paso 1">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 01</span><span>Dos aguas</span></div><h3>Las dos aguas</h3><div class="quick-reminder"><span><b>Pequeña</b> · agua del caño · máximo</span><span><b>Grande</b> · agua para beber · mínimo</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Enciendo simultáneamente dos cacerolas. La pequeña contiene agua del caño. Esta agua no es para beber; solamente la uso para calentar y enjuagar la prensa francesa y sus piezas. Pongo esa hornilla al máximo para que hierva rápidamente.</p><p>Al mismo tiempo enciendo la cacerola grande con el agua limpia que compro para beber y que posteriormente usaré para preparar el café. Esta segunda hornilla queda al mínimo porque todavía debo esperar que hierva la primera agua, trabajar con la prensa francesa y dejarla calentándose durante aproximadamente 2 minutos.</p></div></details></div>
+  </article>
 
-      <div class="steps" id="stepsTrack">
-        <article class="step active" data-step="1">
-          <div class="step-copy">
-            <span class="step-number">PASO 01</span><h3>Las dos aguas</h3>
-            <p>Enciendo simultáneamente dos cacerolas. La pequeña contiene agua del caño: esa agua <strong>no será para beber</strong>; solamente la usaré para calentar y enjuagar la prensa francesa y sus piezas. Pongo esa hornilla al máximo para que hierva rápido.</p>
-            <p>Al mismo tiempo enciendo la cacerola grande con el agua limpia que compro para beber y que finalmente usaré para preparar el café. Esta segunda hornilla queda al mínimo porque todavía necesito esperar que hierva la primera agua y realizar el calentamiento de la prensa durante aproximadamente 2 minutos.</p>
-            <div class="two-water"><span>Agua 1 · caño<br><b>No se bebe</b></span><span>Agua 2 · limpia<br><b>Sí prepara el café</b></span></div>
-          </div>
-          <div class="step-art water-art" aria-hidden="true"><div class="pot small">1</div><div class="flow"></div><div class="pot large">2</div></div>
-        </article>
+  <article class="step-card" data-step="2">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/TtfpVj1fub0/hqdefault.jpg" alt="Émbolo de la prensa durante el enjuague"><button class="play-button" type="button" data-video="TtfpVj1fub0" data-title="Paso 2 · Calentar y enjuagar" aria-label="Reproducir video del paso 2">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 02</span><span>≈ 10 s</span></div><h3>Calentar y enjuagar la prensa</h3><div class="quick-reminder"><span>Agua pequeña → prensa</span><span>Émbolo ↑↓ unos 10 s · luego arriba</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Cuando hierve el agua de la cacerola pequeña, la vierto dentro de la prensa francesa y coloco la tapa con el émbolo.</p><p>Aprovecho esa misma agua muy caliente para enjuagar el conjunto que llamo “filtros”: filtro, placas, pieza en forma de cruz y resorte. Durante aproximadamente 10 segundos subo y bajo el émbolo para que el agua caliente pase por estas piezas.</p><p>Al terminar, subo completamente el émbolo. Los filtros quedan arriba y el calor y el vapor también ayudan a calentar toda la jarra.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="2">
-          <div class="step-copy">
-            <span class="step-number">PASO 02</span><h3>Calentar y enjuagar</h3>
-            <p>Cuando hierve el agua de la cacerola pequeña, la vierto en la prensa francesa y coloco la tapa con el émbolo.</p>
-            <p>Aprovecho esa agua hirviendo para enjuagar con agua caliente las piezas que llamaré en conjunto <strong>filtros</strong>: el filtro y las dos placas —incluida la pieza en forma de cruz— junto con el resorte. Durante aproximadamente 10 segundos subo y bajo el émbolo para que el agua caliente pase por estas piezas.</p>
-            <p>Finalmente subo completamente el émbolo y dejo los filtros en la zona superior para que el vapor y el calor ayuden también a calentar toda la jarra.</p>
-          </div>
-          <div class="step-art plunger-art" aria-hidden="true"><div class="press-body"><i></i><span></span></div><div class="motion-arrow">↕</div></div>
-        </article>
+  <article class="step-card" data-step="3">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/2RQjcJg9Jpk/hqdefault.jpg" alt="Prensa junto al celular con cronómetro de 2 minutos"><button class="play-button" type="button" data-video="2RQjcJg9Jpk" data-title="Paso 3 · Calentar 2 minutos" aria-label="Reproducir video del paso 3">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 03</span><span>02:00</span></div><h3>Calentar durante 2 minutos</h3><div class="quick-reminder"><span>Celular: 02:00</span><span>Tapa + émbolo → jarro rojo</span></div>
+    <div class="timer" data-timer data-duration="120"><div class="timer-topline"><span>Temporizador auxiliar</span><span>En mi preparación real uso el celular.</span></div><output class="timer-display" aria-live="polite">02:00</output><div class="timer-actions"><button type="button" data-action="start">Iniciar</button><button type="button" data-action="pause">Pausar</button><button type="button" data-action="reset">Reiniciar</button></div></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>En mi celular pongo un cronómetro de 2 minutos y dejo el agua caliente dentro para que la jarra tome temperatura.</p><p>Cuando termina el tiempo, retiro la tapa junto con el émbolo y los filtros. Como están calientes y no quiero apoyarlos directamente sobre la mesa, coloco ese conjunto dentro del jarro rojo. Después retiro el agua utilizada para calentar la prensa.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="3">
-          <div class="step-copy">
-            <span class="step-number">PASO 03</span><h3>Calentar 2 minutos</h3>
-            <p>En mi <strong>celular</strong> inicio un cronómetro de 2 minutos y dejo el agua caliente dentro para que la prensa francesa tome temperatura.</p>
-            <p>Cuando termina, retiro la tapa junto con el émbolo y sus filtros. Como están calientes y no quiero apoyarlos directamente sobre la mesa, los coloco dentro del jarro rojo preparado al lado de la prensa. Después retiro el agua utilizada para el calentamiento.</p>
-            <div class="timer-card" data-seconds="120">
-              <div class="timer-display">02:00</div>
-              <div class="timer-actions"><button data-action="start">Iniciar</button><button data-action="pause">Pausar</button><button data-action="reset">Reiniciar</button></div>
-            </div>
-          </div>
-          <div class="step-art phone-art" aria-hidden="true"><div class="phone"><span>2:00</span></div><div class="red-cup">☕</div></div>
-        </article>
+  <article class="step-card" data-step="4">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/QqBpsD6Jfus/hqdefault.jpg" alt="Café molido entrando a la prensa"><button class="play-button" type="button" data-video="QqBpsD6Jfus" data-title="Paso 4 · Añadir y nivelar el café" aria-label="Reproducir video del paso 4">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 04</span><span>2–3 cucharas</span></div><h3>Añadir y nivelar el café</h3><div class="quick-reminder"><span>2–3 cucharas grandes</span><span>Agita y nivela · sin “cerro”</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Echo aproximadamente 2 a 3 cucharas grandes de café dentro de la prensa francesa.</p><p>Después sujeto la jarra y la agito suavemente para distribuir horizontalmente el café. No quiero que quede amontonado formando una especie de “cerro” en el centro; busco que quede aproximadamente nivelado.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="4">
-          <div class="step-copy">
-            <span class="step-number">PASO 04</span><h3>Añadir y nivelar</h3>
-            <p>Echo aproximadamente <strong>2 a 3 cucharas grandes de café</strong> dentro de la prensa francesa.</p>
-            <p>Después sujeto la jarra y la agito suavemente para distribuir el café de forma horizontal. Busco que la superficie quede aproximadamente nivelada y que el café no quede amontonado formando una especie de “cerro” en el centro.</p>
-          </div>
-          <div class="step-art level-art" aria-hidden="true"><div class="grounds before">▲</div><span>→</span><div class="grounds after">━</div></div>
-        </article>
+  <article class="step-card" data-step="5">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/ck7h1sB2IW0/hqdefault.jpg" alt="Tetera vertiendo agua sobre el café"><button class="play-button" type="button" data-video="ck7h1sB2IW0" data-title="Paso 5 · Añadir el agua limpia" aria-label="Reproducir video del paso 5">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 05</span><span>Vertido circular</span></div><h3>Añadir el agua limpia</h3><div class="quick-reminder"><span>Grande → tetera → prensa</span><span>Vertido circular</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Para este momento ya debería haber hervido el agua limpia de la cacerola grande. Retiro esa cacerola y la coloco al extremo derecho de mi zona de trabajo.</p><p>Vierto la cantidad necesaria de esa agua limpia dentro de la tetera. Luego tomo la tetera y echo el agua sobre el café mediante movimientos circulares hasta terminar toda el agua preparada en ella.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="5">
-          <div class="step-copy">
-            <span class="step-number">PASO 05</span><h3>Añadir el agua limpia</h3>
-            <p>Para ese momento ya debería haber hervido el agua limpia de la cacerola grande. Retiro la cacerola y la coloco en el extremo derecho de mi zona de trabajo.</p>
-            <p>Vierto parte —o la cantidad necesaria— de esa agua limpia dentro de la tetera. Con la tetera comienzo a echar el agua sobre el café de la prensa francesa haciendo <strong>movimientos circulares</strong> hasta terminar toda el agua preparada en la tetera.</p>
-          </div>
-          <div class="step-art pour-art" aria-hidden="true"><div class="kettle">◒</div><div class="circular-pour">↻</div><div class="press-mini">♨</div></div>
-        </article>
+  <article class="step-card" data-step="6">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/yYuWw3ZxuZU/hqdefault.jpg" alt="Cuchara mezclando café y agua"><button class="play-button" type="button" data-video="yYuWw3ZxuZU" data-title="Paso 6 · Mezclar" aria-label="Reproducir video del paso 6">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 06</span><span>Solo mezcla</span></div><h3>Mezclar</h3><div class="quick-reminder"><span>Cuchara</span><span>Solo café + agua</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Cuando termino de echar el agua con la tetera, utilizo una cuchara. Mezclo el café con un movimiento parecido al que haría una persona al endulzar una bebida.</p><p>No agrego ningún ingrediente: no agrego azúcar ni leche. Solamente estoy mezclando café + agua con la cuchara.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="6">
-          <div class="step-copy">
-            <span class="step-number">PASO 06</span><h3>Mezclar</h3>
-            <p>Cuando termino de echar el agua con la tetera, utilizo una cuchara para mezclar el café. Hago un movimiento parecido al que se haría al endulzar una bebida.</p>
-            <p><strong>No agrego azúcar ni ningún otro ingrediente.</strong> Solamente mezclo el café y el agua con la cuchara.</p>
-          </div>
-          <div class="step-art stir-art" aria-hidden="true"><div class="cup-circle">↻</div><div class="spoon">╱</div></div>
-        </article>
+  <article class="step-card" data-step="7">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/BahHHN0ITE0/hqdefault.jpg" alt="Tapa colocada y émbolo en la parte superior"><button class="play-button" type="button" data-video="BahHHN0ITE0" data-title="Paso 7 · Colocar tapa y émbolo" aria-label="Reproducir video del paso 7">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 07</span><span>No prensar aún</span></div><h3>Colocar tapa y émbolo</h3><div class="quick-reminder"><span>Tapa la prensa</span><span>Baja solo hasta la superficie del café</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Inmediatamente después vuelvo a colocar la tapa de la prensa francesa.</p><p>Bajo el émbolo solamente hasta que el filtro llegue aproximadamente a la superficie superior donde se encuentra el café. Todavía no presiono el café hacia el fondo.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="7">
-          <div class="step-copy">
-            <span class="step-number">PASO 07</span><h3>Tapa y émbolo</h3>
-            <p>Inmediatamente después vuelvo a colocar la tapa de la prensa francesa. Bajo el émbolo solamente hasta que el filtro llegue aproximadamente a la altura donde comienza la superficie superior del café.</p>
-            <p><strong>Todavía no presiono el café hacia el fondo.</strong></p>
-          </div>
-          <div class="step-art plunger-position" aria-hidden="true"><div class="glass"><i></i><b></b></div><span>Filtro justo sobre la superficie</span></div>
-        </article>
+  <article class="step-card" data-step="8">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/qOIk8r674z4/hqdefault.jpg" alt="Celular con cronómetro de 4 minutos junto a la prensa"><button class="play-button" type="button" data-video="qOIk8r674z4" data-title="Paso 8 · Esperar entre 4 y 5 minutos" aria-label="Reproducir video del paso 8">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 08</span><span>4–5 min</span></div><h3>Esperar entre 4 y 5 minutos</h3><div class="quick-reminder"><span>Celular: 04:00</span><span>Rango práctico: 4–5 min</span></div>
+    <div class="timer" data-timer data-duration="240"><div class="timer-topline"><span>Temporizador auxiliar</span><span>4 min es mi opción principal.</span></div><div class="timer-choice" role="group" aria-label="Elegir duración"><button class="selected" type="button" data-duration="240">4 min</button><button type="button" data-duration="300">5 min</button></div><output class="timer-display" aria-live="polite">04:00</output><div class="timer-actions"><button type="button" data-action="start">Iniciar</button><button type="button" data-action="pause">Pausar</button><button type="button" data-action="reset">Reiniciar</button></div></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Uso nuevamente mi celular. Configuro un cronómetro de entre 4 y 5 minutos. Normalmente pongo 4 minutos porque, en ocasiones, estoy lejos de la cocina y mientras regreso el tiempo real termina quedando aproximadamente dentro de ese rango.</p><p>Durante ese tiempo dejo infusionar el café. No sigo bajando el émbolo.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="8">
-          <div class="step-copy">
-            <span class="step-number">PASO 08</span><h3>Esperar 4–5 minutos</h3>
-            <p>Uso nuevamente mi <strong>celular</strong>. Configuro un cronómetro de entre 4 y 5 minutos. Normalmente utilizo 4 minutos porque, si estoy lejos de la cocina, el tiempo que demoro en regresar hace que termine dentro del intervalo aproximado de 4 a 5 minutos.</p>
-            <p>Durante ese tiempo dejo infusionar el café sin seguir bajando el émbolo.</p>
-            <div class="timer-card brew-timer" data-seconds="240">
-              <div class="timer-choice" role="group" aria-label="Duración"><button class="selected" data-duration="240">4 min</button><button data-duration="300">5 min</button></div>
-              <div class="timer-display">04:00</div>
-              <div class="timer-actions"><button data-action="start">Iniciar</button><button data-action="pause">Pausar</button><button data-action="reset">Reiniciar</button></div>
-            </div>
-          </div>
-          <div class="step-art phone-art" aria-hidden="true"><div class="phone"><span>4:00</span></div><div class="steam">≈≈</div></div>
-        </article>
+  <article class="step-card" data-step="9">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/0x4CLIiZGoI/hqdefault.jpg" alt="Émbolo descendiendo lentamente"><button class="play-button" type="button" data-video="0x4CLIiZGoI" data-title="Paso 9 · Bajar el émbolo" aria-label="Reproducir video del paso 9">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 09</span><span>≈ 1 dedo</span></div><h3>Bajar el émbolo</h3><div class="quick-reminder"><span>Baja lentamente</span><span>Detente 1 dedo antes del fondo</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Cuando transcurren aproximadamente los 4 minutos, bajo lentamente el émbolo. Algunas personas lo bajan completamente hasta el fondo; yo no hago exactamente eso.</p><p>Prefiero detenerlo aproximadamente a una distancia equivalente al grosor de un dedo de la mano antes de tocar el fondo. Lo hago como precaución adicional para reducir todavía más la posibilidad de que algún grano o partícula llegue al café líquido filtrado, aunque probablemente no sucedería. Este consejo lo aprendí en Internet y lo incorporé a mi forma de preparar café.</p></div></details></div>
+  </article>
 
-        <article class="step" data-step="9">
-          <div class="step-copy">
-            <span class="step-number">PASO 09</span><h3>Bajar el émbolo</h3>
-            <p>Cuando transcurren aproximadamente los 4 minutos, bajo lentamente el émbolo. Algunas personas lo presionan completamente hasta el fondo; yo prefiero detenerme aproximadamente a una distancia equivalente al <strong>grosor de un dedo</strong> antes de tocar el fondo.</p>
-            <p>Lo hago como precaución adicional para reducir todavía más la posibilidad de que algún grano o partícula llegue al café líquido filtrado, aunque probablemente no sucedería. Este consejo lo aprendí en Internet y lo incorporé a mi manera de preparar café.</p>
-          </div>
-          <div class="step-art gap-art" aria-hidden="true"><div class="gap-glass"><i></i><b></b><em>≈ 1 dedo</em></div></div>
-        </article>
+  <article class="step-card" data-step="10">
+    <div class="step-media"><img loading="lazy" src="https://i.ytimg.com/vi/7pFrWGKxwqY/hqdefault.jpg" alt="Café saliendo de la prensa hacia una cacerola"><button class="play-button" type="button" data-video="7pFrWGKxwqY" data-title="Paso 10 · Servir inmediatamente" aria-label="Reproducir video del paso 10">▶</button></div>
+    <div class="step-body"><div class="step-kicker"><span>PASO 10</span><span>Servir ya</span></div><h3>Servir inmediatamente</h3><div class="quick-reminder"><span>Sostén el émbolo</span><span>Vierte fuera de la prensa · no lo dejes dentro</span></div>
+    <details><summary>Ver explicación completa</summary><div class="details-copy"><p>Cuando termino de prensar, vacío inmediatamente el café. Mientras lo hago, sostengo el émbolo. Puedo vaciarlo en la cacerola grande, que para ese momento ya está vacía, o en cualquier recipiente adecuado que soporte café casi hirviendo.</p><p>No dejo el café preparado dentro de la prensa francesa porque en el fondo permanecen los granos. No quiero que continúen en contacto con el café líquido durante más tiempo del necesario. De esta manera busco conservar mejor su olor y su sabor.</p><p><strong>Al final: disfrutar.</strong></p></div></details></div>
+  </article>
 
-        <article class="step" data-step="10">
-          <div class="step-copy">
-            <span class="step-number">PASO 10</span><h3>Servir inmediatamente</h3>
-            <p>Cuando termino de prensar, vacío inmediatamente el café y sostengo el émbolo mientras vierto el contenido. Puedo vaciarlo en la cacerola grande —que para ese momento ya está vacía— o en cualquier recipiente adecuado que soporte café casi hirviendo.</p>
-            <p><strong>No dejo el café preparado dentro de la prensa francesa.</strong> En el fondo siguen estando los granos y no quiero que permanezcan en contacto con el café líquido durante más tiempo del necesario. De esta manera busco conservar mejor su olor y sabor.</p>
-          </div>
-          <div class="step-art final-cup" aria-hidden="true"><div class="coffee-cup">☕</div><div class="aroma">≈≈≈</div><span>Listo para disfrutar</span></div>
-        </article>
-      </div>
+  </div>
+</section>
 
-      <div class="step-controls">
-        <button id="prevStep" class="button secondary" type="button">← Anterior</button>
-        <button id="nextStep" class="button primary" type="button">Siguiente →</button>
-      </div>
-    </div>
-  </section>
+<section id="completo" class="section shell">
+  <div class="full-card">
+    <div class="full-media"><img loading="lazy" src="https://i.ytimg.com/vi/NMrSZJ5kMnU/hqdefault.jpg" alt="Preparación completa del café"><button class="play-button large" type="button" data-video="NMrSZJ5kMnU" data-title="Preparación completa" aria-label="Reproducir preparación completa">▶</button></div>
+    <div class="full-copy"><p class="eyebrow">PREPARACIÓN COMPLETA</p><h2>Los 10 pasos, de principio a fin</h2><p>Una sola reproducción para ver mi secuencia completa. Los videos individuales siguen disponibles dentro de cada paso.</p><button class="button primary" type="button" data-video="NMrSZJ5kMnU" data-title="Preparación completa">Ver preparación completa</button></div>
+  </div>
+</section>
 
-  <section id="videos" class="section shell">
-    <div class="section-head">
-      <div><span class="eyebrow">VIDEOS</span><h2>Los 10 pasos en movimiento</h2></div>
-      <p>Los archivos se cargan solo al pedirlos. Colócalos en <code>videos/video-01.mp4</code> hasta <code>video-10.mp4</code>.</p>
-    </div>
-    <div id="videoGrid" class="video-grid"></div>
-  </section>
-
-  <section id="alternativas" class="section shell alternatives">
-    <div class="section-head">
-      <div><span class="eyebrow">SECCIÓN INDEPENDIENTE</span><h2>Alternativas habituales</h2></div>
-      <p>Estas técnicas no forman parte de mi procedimiento. Son otras maneras conocidas de trabajar con prensa francesa.</p>
-    </div>
-    <div class="alt-grid">
-      <article><h3>Proporción medida</h3><p>Algunas recetas pesan café y agua para repetir una proporción constante, por ejemplo alrededor de 1:15 o 1:16, ajustándola al gusto.</p></article>
-      <article><h3>Temperatura controlada</h3><p>En vez de usar el agua inmediatamente al hervir, algunas personas esperan o miden la temperatura antes de verterla.</p></article>
-      <article><h3>Preinfusión</h3><p>Otra técnica humedece primero el café con una pequeña parte del agua, espera unos segundos y luego completa el vertido.</p></article>
-      <article><h3>Romper la costra</h3><p>Algunos métodos esperan varios minutos y después rompen con una cuchara la capa de café que se forma en la superficie.</p></article>
-      <article><h3>Infusión más larga</h3><p>Existen métodos que amplían el tiempo y luego retiran espuma y partículas antes de servir, buscando una taza más limpia.</p></article>
-      <article><h3>Filtrado adicional</h3><p>También se puede pasar el café preparado por un filtro adicional si se desea reducir todavía más los sedimentos.</p></article>
-    </div>
-  </section>
+<section id="alternativas" class="section shell alternatives">
+  <div class="section-heading"><div><p class="eyebrow">SECCIÓN INDEPENDIENTE</p><h2>Alternativas</h2></div><p class="section-intro">Estas ideas no forman parte de mi procedimiento; son otras maneras conocidas de trabajar con una prensa francesa.</p></div>
+  <div class="alternatives-grid">
+    <article><span>01</span><h3>Proporciones medidas</h3><p>Algunas preparaciones pesan el café y el agua para repetir una proporción concreta y luego ajustarla al gusto.</p></article>
+    <article><span>02</span><h3>Temperatura controlada</h3><p>En otros métodos se espera después del hervor o se mide la temperatura antes de verter el agua.</p></article>
+    <article><span>03</span><h3>Preinfusión</h3><p>Otra técnica humedece primero el café con una parte del agua, espera unos segundos y luego completa el vertido.</p></article>
+    <article><span>04</span><h3>Trabajo con la costra</h3><p>Algunos métodos esperan varios minutos y después rompen con una cuchara la capa que se forma en la superficie.</p></article>
+    <article><span>05</span><h3>Infusiones más largas</h3><p>Hay preparaciones que amplían el tiempo y retiran espuma o partículas antes de servir.</p></article>
+    <article><span>06</span><h3>Filtrado adicional</h3><p>También puede pasarse el café ya preparado por un filtro adicional para reducir todavía más los sedimentos.</p></article>
+  </div>
+</section>
 </main>
 
-<footer class="footer shell">
-  <p>Mi método de café con prensa francesa.</p>
-  <a href="#inicio">Volver arriba ↑</a>
-</footer>
+<footer class="footer shell"><span>Mi método de café con prensa francesa.</span><a href="#inicio">Volver arriba ↑</a></footer>
+
+<dialog id="videoDialog" class="video-dialog" aria-labelledby="videoDialogTitle">
+  <div class="video-dialog-shell"><div class="video-dialog-head"><h2 id="videoDialogTitle">Video</h2><button id="closeVideo" class="dialog-close" type="button" aria-label="Cerrar video">×</button></div><div id="videoFrame" class="video-frame"></div></div>
+</dialog>
+<noscript><div class="noscript">Activa JavaScript para usar los cronómetros, el cambio de tema y los videos integrados.</div></noscript>
 </body>
 </html>
