@@ -18,6 +18,10 @@
       const posterUrl = URL.createObjectURL(new Blob([bytes],{type:"image/webp"}));
       root.style.setProperty("--poster-atlas", 'url("'+posterUrl+'")');
       document.body.classList.add("has-local-posters");
+      document.querySelectorAll(".step-media>img,.full-media>img").forEach(img=>{
+        img.dataset.fallbackSrc=img.getAttribute("src")||"";
+        img.removeAttribute("src");
+      });
       window.addEventListener("pagehide",()=>URL.revokeObjectURL(posterUrl),{once:true});
     }catch(_){
       // Las miniaturas de YouTube quedan como respaldo si el atlas no carga.
