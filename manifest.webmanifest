@@ -1,0 +1,13 @@
+{
+  "name": "Mi café · Prensa francesa",
+  "short_name": "Mi café",
+  "description": "Mi método personal para preparar café con prensa francesa en 10 pasos.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f1eb",
+  "theme_color": "#f5f1eb",
+  "icons": [
+    {"src":"./assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
