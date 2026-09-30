@@ -1,20 +1,38 @@
-# coffee
+# Mi café · Prensa francesa
 
-Web personal sobre mi método para preparar café con prensa francesa.
+Web personal que explica **mi** método para preparar café con prensa francesa:
+seis utensilios y diez pasos.
 
-## Sitio
-GitHub Pages: https://la86926.github.io/coffee/
+**Sitio:** https://la86926.github.io/coffee/
 
-## Implementación
-- HTML, CSS y JavaScript sin frameworks.
-- Diseño responsive tipo app para móvil, tablet y escritorio.
-- Fotografía real de los cinco utensilios en el orden de trabajo.
-- Diez pasos con lectura rápida y explicación completa.
-- Dos cronómetros auxiliares: 2 minutos y 4/5 minutos.
-- Los videos se reproducen desde YouTube mediante `youtube-nocookie.com`; el iframe se crea solo cuando el usuario pulsa reproducir.
-- Las portadas se extraen de los MP4 originales en los momentos representativos indicados y se sirven como un atlas WebP compacto; las miniaturas de YouTube quedan como respaldo.
-- Tema sistema/claro/oscuro.
-- Manifest ligero para experiencia instalable.
-- Sin service worker para evitar caché obsoleta innecesaria en una guía estática.
+## Estructura
 
-Los MP4 originales se conservaron como material fuente y no se alojan en GitHub Pages para evitar añadir aproximadamente 182 MB al sitio.
+```
+index.html              Contenido completo (10 pasos, utensilios, alternativas)
+css/styles.css          Sistema visual (tokens claro/oscuro del archivo de Figma)
+js/app.js               Hoja de detalle, cronómetros, tema, zoom, navegación
+sw.js                   Service worker ligero (funciona sin conexión, sin cachear videos)
+manifest.webmanifest    PWA instalable
+icons/                  Iconos de la app (SVG + PNG + apple-touch-icon)
+img/                    Portadas WebP extraídas de los videos y fotos de los utensilios
+videos/                 coffee1.mp4 … coffee10.mp4 + coffee-completo.mp4 (optimizados)
+```
+
+## Decisiones
+
+- **Videos:** MP4 locales H.264 540×960, `faststart`, `preload="none"`. Solo se cargan
+  cuando el visitante abre un paso. 11.6 MB en total (los originales pesaban ~183 MB).
+  Cada paso enlaza además a su versión en YouTube.
+- **Portadas:** fotogramas elegidos de cada video (p. ej. paso 1 a 2.8 s, paso 4 a 16.8 s),
+  exportados en WebP en tres tamaños: miniatura, tarjeta 4:5 y póster 9:16.
+- **Cronómetros:** paso 3 (2:00) y paso 8 (4:00 por defecto, o 5:00). Iniciar, pausar,
+  reiniciar; píldora flotante mientras corren; vibración, sonido y pantalla encendida
+  (Wake Lock) cuando el navegador lo permite. En mi preparación real uso el celular.
+- **Zoom bloqueado** (experiencia tipo app): viewport sin escala, `touch-action: manipulation`,
+  y se evitan pinch, doble toque, Ctrl/Cmd + rueda y Ctrl/Cmd + +/−/0.
+- **Sin librerías:** HTML, CSS y JavaScript puros.
+
+## Actualizar
+
+Al cambiar CSS o JS, sube el número de versión en `index.html` (`?v=`) y en `sw.js`
+(`VERSION` y la lista `SHELL`) para que los navegadores reciban la versión nueva.
